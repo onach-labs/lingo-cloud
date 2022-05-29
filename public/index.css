@@ -1,7 +1,9 @@
-#appsMenu {
+#panel {
     border-right:  1px solid #FFFFFF; 
     border-bottom: 1px solid #FFFFFF;
-    cursor: pointer;
+}
+#appsMenu {
+    cursor: default;
 }
 .window {
     width: 1010px;
@@ -50,9 +52,13 @@ body {
     text-align: center;
     cursor: pointer;
 }
+img {
+    width: 100%;
+    height: 100%;
+}
 .icon {
-    height: 100px;
     width: 100px;
+    height: 100px;
     display: inline-block;
     cursor: pointer;
 }
