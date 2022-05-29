@@ -6,7 +6,6 @@
         "target": "esnext",
         "module": "commonjs",
         "esModuleInterop": true,
-        "watch": true,
         "moduleResolution": "node",
         "noEmitOnError": true
     },
