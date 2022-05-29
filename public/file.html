@@ -1,0 +1,136 @@
+<script src="xterm/lib/xterm.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js"></script>
+<script src="globals.js"></script>
+<link rel="stylesheet" href="./xterm/css/xterm.css" />
+<span id="terminal"></span>
+<script>
+    // @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&dn=gpl-3.0.txt GPL-3.0-or-later
+    var term = new Terminal();
+    
+    var dl6 = new Date("12/28/2001");
+
+    var today = new Date();
+
+    var dd = String(today.getDate()).padStart(2, '0');
+
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+
+    var yyyy = today.getFullYear();
+
+    today = new Date(mm + '/' + dd + '/' + yyyy);
+
+    var diff = Math.round((today.getTime() - dl6.getTime()) / (1000 * 3600 * 24));
+
+    var uptime = new Date(performance.timing.navigationStart).toString()
+
+    const quotes = [
+`Lana: It was in law school. I was in my third year, and [Mia] was auditing the class. She was different than the other students.\r\n
+Phoenix: Different?\r\n
+Lana: She was strong... She'd do anything to become a defense attorney. Anything. That... was probably why she was attracted to me.\r\n
+Phoenix: E-excuse me!?\r\n
+Ema: Intellectually attracted! Lana was top of her class in school.\r\n
+Lana: I was the best there was.\r\n
+Phoenix: Oh...\r\n
+Ema: I'm doing pretty good in school too, by the way!\r\n
+Phoenix: (It sounds a bit different when Ema says it...)\r\n
+\u0009 from "Rise from the Ashes" - Phoenix Wright: Ace Attorney
+`
+    ]
+    const sleep = (milliseconds) => {
+        return new Promise(resolve => setTimeout(resolve, milliseconds))
+    }
+
+    term.open(document.getElementById('terminal'));
+       var date1 = new Date("06/30/2019"); 
+    function runFakeTerminal() {
+        if (term._initialized) {
+            return;
+        }
+
+    term._initialized = true;
+
+    term.prompt = () => {
+      term.write('\r\nroot@lingo-shell:~$ ');
+    };
+
+    term.writeln('Welcome to lingosh.');
+    term.writeln('Type "help" for a list of all commands that will work here.');
+    term.writeln('');
+    prompt(term);
+ 
+    var input = "";
+    term.onData(e => {
+        const code = e.charCodeAt(0);
+        if (code == 13) { // CR
+            if (input == "quote") {
+                term.write("\r\n" + _.sampleSize(quotes, 1).toString() + "\r\n");
+                term.write("root@lingo-shell:~$ ");
+                input = "";
+            }
+            else if (input.startsWith("rev install ")) {
+                $.getJSON("/pkg-list.json", function(data) {
+                    if (!(data.packages.includes(input.substring(12)))) {
+                        term.write("\r\nLang Zi says: \"A cub who tries to install a nonexistent package shall be required to view the package list.\"\r\n")
+                        term.write("root@lingo-shell:~$ ");
+                        input = "";
+                    }
+                    else {
+                        localStorage.setItem(input.substring(12), "installed");
+                        console.log(input)
+                        term.write("\r\nPackage installed successfully.\r\n");
+                        term.write("root@lingo-shell:~$ ");
+                        input = "";
+                    }
+                })
+                
+            }
+            else if (input == "rev install") {
+                term.write("\r\nLang Zi says: \"A cub who fails to specify which package to install shall be required to view the package list.\"\r\n")
+                term.write("root@lingo-shell:~$ ");
+                input = "";
+            }
+            else if (input == "rev") {
+                term.write("\r\nReverend Package Manager\r\nVersion: 1.0.0\r\nReverend approved.\r\n")
+                term.write("root@lingo-shell:~$ ");
+                input = "";
+            }
+            else if (input == "neofetch") {
+                term.write("\r\n\x1b[1;33m  ███████████████████ OS: " + window.navigator.platform + "\r\n  ███████████████████ Resolution: " + window.screen.width + "x" + window.screen.height + "\r\n\x1b[1;37m  ███████████████████ Lingo Version: " + version + "\r\n  ███████████████████ Pride Version: " + pride_ver + "\r\n\x1b[1;35m  ███████████████████ Number of Days since DL-6: " + diff + "\r\n  ███████████████████ Time: " + new Date().toLocaleString() + "\r\n\x1b[1;30m  ███████████████████\r\n  ███████████████████\r\n\x1b[0;37m")
+                term.write("root@lingo-shell:~$ ");
+                input = "";
+            }
+            else if (input == "time") {
+                term.write("\r\nI think it's " + new Date().toLocaleTimeString() + ".\r\n");
+                term.write("root@lingo-shell:~$ ");
+                input = "";
+            }
+            else {
+                term.write("\r\nLang Zi says: \"A cub who enters a nonexistent command should probably RTFM.\"\r\n")
+                term.write("root@lingo-shell:~$ ");
+                input = "";
+            }
+        } 
+        else if (code < 32 || code == 127) { // Control
+            term.write("\b \b")
+        } 
+        else { // Visible
+            term.write(e);
+            input += e;
+        }
+    });
+  }
+    function prompt(term) {
+        var input = "";
+        term.write('\r\nroot@lingo-shell:~$ ' + input);
+    }
+    runFakeTerminal();
+    
+    // @license-end
+</script>    
+<style>
+body {
+    background-color: #000000
+}
+</style>

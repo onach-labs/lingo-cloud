@@ -1,0 +1,61 @@
+#appsMenu {
+    border-right:  1px solid #FFFFFF; 
+    border-bottom: 1px solid #FFFFFF;
+    cursor: pointer;
+}
+.window {
+    width: 1010px;
+    height: 500px;
+    background-color: #f1f1f1;
+}
+.header {
+    width: 1010px;
+    height: 30px;
+    background-color: #999;
+    text-align: center;
+    line-height: 50px;
+    cursor: move;
+}
+.content {
+    padding: 10px;
+    background-color: #999999
+}
+body {
+    background-color: #202020;
+    color: #FFFFFF;
+}
+.window-button[data-action=close] {
+    height: 20px;
+    width: 40px;
+    background-color: #f85151ea;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    
+}
+.window-button[data-action=minimize] {
+    height: 20px;
+    width: 40px;
+    background-color: #fffb00ea;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    
+}
+.window-button[data-action=maximize] {
+    height: 20px;
+    width: 40px;
+    background-color: #1e9413ea;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+}
+.icon {
+    height: 100px;
+    width: 100px;
+    display: inline-block;
+    cursor: pointer;
+}
+.icon-caption {
+    display: block;
+}

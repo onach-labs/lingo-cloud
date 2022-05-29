@@ -1,0 +1,14 @@
+
+{
+    "compilerOptions": {
+        "jsx": "react",
+        "allowJs": true,
+        "target": "esnext",
+        "module": "commonjs",
+        "esModuleInterop": true,
+        "watch": true,
+        "moduleResolution": "node",
+        "noEmitOnError": true
+    },
+    "exclude": ["node_modules", "views", "public/globals.js"]
+}
