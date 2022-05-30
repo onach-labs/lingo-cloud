@@ -24,7 +24,7 @@ let script = {
         });
         const newDiv = document.createElement("div");
 
-        const newContent = document.createTextNode("Hi there and greetings!");
+        const newContent = document.createTextNode("Hello there! My name is Jay, and I'm a girl, among other things. Welcome to Lingo, the free and open-source web-based Unix-like operating system (kind of) that was specifically designed to have a copious amount of non-binary flags. Okay, maybe I wasn't fully telling the truth when I said that I'm a girl.");
 
         newDiv.appendChild(newContent);
             newDiv.setAttribute("class", "content")
