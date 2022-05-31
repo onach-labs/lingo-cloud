@@ -101,9 +101,17 @@
                             input = "";
                         }
                         else {
-                            term.write("\r\nLang Zi says: \"A cub who enters a nonexistent command should probably RTFM.\"\r\n")
-                            term.write("root@lingo-shell:~$ ");
-                            input = "";
+                            var isInstalled = localStorage.getItem(input);
+                            if(!isInstalled) {
+                                term.write("\r\nLang Zi says: \"A cub who enters a nonexistent command should probably RTFM.\"\r\n")
+                                term.write("root@lingo-shell:~$ ");
+                                input = "";
+                            }
+                            else {
+                                term.write("This feature has not been implemented yet.")
+                                term.write("root@lingo-shell:~$ ");
+                                input = "";
+                            }
                         }
                         break;
                 }
