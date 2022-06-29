@@ -8,6 +8,10 @@
     "build": "tsc",
     "postinstall": "npm run build"
   },
+   "engines": {
+    "node": "16.15.0",
+    "npm": "8.5.5"
+  },
   "author": "JJPMaster",
   "license": "GPL-3.0",
   "dependencies": {
